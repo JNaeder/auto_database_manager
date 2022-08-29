@@ -1,3 +1,5 @@
+import datetime
+
 import gspread
 import mysql.connector
 import time
@@ -30,7 +32,7 @@ class Spreadsheet:
 class MySQL:
     def __init__(self):
         self.database = mysql.connector.connect(
-            host="192.168.0.192",
+            host="192.168.0.191",
             # host="2.tcp.ngrok.io",
             # port=16493,
             user="johnny",
@@ -141,9 +143,10 @@ if __name__ == "__main__":
         controller = MasterController()
         controller.process_data()
         final_time = time.perf_counter() - start_time
-        print(f"Done in {round(final_time, 4)} seconds")
+        the_datetime = datetime.datetime.now().strftime("%m/%d/%y - %H:%M:%S")
+        print(f"{the_datetime} (Finished in {round(final_time, 2)} sec)")
 
 
     while True:
         main()
-        time.sleep(30)
+        time.sleep(300)
